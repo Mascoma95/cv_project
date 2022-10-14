@@ -13,9 +13,7 @@ def home_view(request):
 # Create your views here.
 def thanks_view(request):
     form = ContactForm(request.POST)
-    print(form)
     if form.is_valid():
-        print('request valid')
         name = form.cleaned_data['name']
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
@@ -28,6 +26,5 @@ def thanks_view(request):
             return HttpResponse('Invalid header found.')
         return render(request , 'cv_app/thanks.html/' , {'object' : {"name":name , "email" : sender}})
     else:
-        print('request NOT VALID')
         form = ContactForm()
         return render(request,'cv_app/thanks_failed.html/')

@@ -1,7 +1,6 @@
 from django.db import models
-
-from django.utils import timezone
 from django.urls import reverse
+
 # Create your models here.
 # https://docs.djangoproject.com/en/4.1/topics/db/models/
 
@@ -15,6 +14,9 @@ class CV(models.Model):
     def __str__(self):  #per scegliere cosa visualizzare su admin
         return self.nome + ' ' + self.cognome
 
+    def get_absolute_url(self):
+        #slug = models.SlugField(max_length=250, unique_for_date='publish')
+        return reverse('home_view',args=[])
 
 class Progetto(models.Model):
     immagine = models.ImageField()
@@ -23,3 +25,7 @@ class Progetto(models.Model):
 
     def __str__(self):  #per scegliere cosa visualizzare su admin
         return self.titolo
+
+    def get_absolute_url(self):
+        #slug = models.SlugField(max_length=250, unique_for_date='publish')
+        return reverse('home_view',args=[])
